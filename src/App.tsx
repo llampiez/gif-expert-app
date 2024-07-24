@@ -1,25 +1,26 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { AddCategory } from './AddCategory';
 
 export const App = () => {
   const [categories, setCategories] = useState(['Kimetsu No Yaiba', 'Jujutsu Kaisen']);
 
-  const handleAddCategory = () => {
-    setCategories([...categories, 'Naruto'])
+  const handleAddCategory = (newCategory: string) => {
+    setCategories([newCategory, ...categories])
   }
 
   return (
     <>
       <h1>Hello, world!</h1>
 
-      <button onClick={handleAddCategory}>Añadir</button>
+      <AddCategory
+        onAddCategory={handleAddCategory}
+      />
 
       <ol>
         {categories.map((category, index) => {
-          return (
-            <li key={index}>{category}</li>
-          )
+          return <li key={index}>{category}</li>;
         })}
       </ol>
     </>
-  )
-}
+  );
+};
